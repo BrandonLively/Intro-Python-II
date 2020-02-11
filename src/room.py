@@ -3,10 +3,15 @@
 
 
 class Room:
-    def __init__(self, name, desc):
+    def __init__(self, name, desc, items):
         self.w_to = None
         self.e_to = None
         self.s_to = None
         self.n_to = None
+        self.items = items
         self.name = name
         self.desc = desc
+
+    def remove_item(self, item):
+        self.items.remove(item)
+

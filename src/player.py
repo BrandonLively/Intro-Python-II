@@ -3,6 +3,12 @@
 
 
 class Player:
-    def __init__(self, current_room, item=1):
+    def __init__(self, current_room, items=[]):
         self.current_room = current_room
-        self.item = item
+        self.items = items
+
+    def add_item(self, item):
+        self.items.append(item)
+
+    def remove_item(self, item):
+        self.items.remove(item)

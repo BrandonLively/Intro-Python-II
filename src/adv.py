@@ -85,7 +85,8 @@ while running:
             print(i)
         empty_room = False
 
-    value = input(f"\nEnter a Command:\nn: North \ns: South \ne: East \nw: West\np: Pickup Item\ni: View Inventory\n")
+    value = input(f"\nEnter a Command:\nn: North \ns: South \ne: East \nw: West\np: Pickup Item\nd: Drop Item\ni: "
+                  f"View Inventory\n")
     value = value.upper()
     # todo Replace elif Chain with Switch-Case statement
     if value == 'N':
@@ -124,6 +125,18 @@ while running:
         print('\nInventory:')
         for i in player.items:
             print(i)
+    elif value == 'D':
+        print("\n Which item would you like to drop?")
+        for i in player.items:
+            print(i)
+        choice = input("").lower()
+        for i in player.items:
+            if i.name == choice:
+                player.remove_item(i)
+                current_room.add_item(i)
+                print(f"Dropped {choice}")
+                break
+
     elif value == 'Q':
         running = False
         break

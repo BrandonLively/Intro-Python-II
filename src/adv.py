@@ -1,4 +1,6 @@
-from room import Room
+from src.room import Room
+from src.player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -38,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -49,3 +52,33 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+running = True
+while running:
+    error_msg = 'This is a Dead End'
+    print(player.current_room.name)
+    print(textwrap.wrap(player.current_room.desc))
+    value = input("n: North \ns: South \ne: East \nw: West\n")
+    value = value.upper()
+    if value == 'N':
+        if player.current_room.n_to is not None:
+            player.current_room = player.current_room.n_to
+        else:
+            print(error_msg)
+    elif value == 'S':
+        if player.current_room.s_to is not None:
+            player.current_room = player.current_room.s_to
+        else:
+            print(error_msg)
+    elif value == 'E':
+        if player.current_room.e_to is not None:
+            player.current_room = player.current_room.e_to
+        else:
+            print(error_msg)
+    elif value == 'W':
+        if player.current_room.w_to is not None:
+            player.current_room = player.current_room.w_to
+        else:
+            print(error_msg)
+    elif value == 'Q':
+        running = False
+        break
